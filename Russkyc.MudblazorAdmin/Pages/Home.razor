@@ -1,0 +1,22 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<MudBreadcrumbs Items="@_breadcrumbItems"></MudBreadcrumbs>
+
+<MudStack Spacing="4" Class="m-4">
+    <MudText Typo="Typo.h4">Hello, world!</MudText>
+    <MudText Typo="Typo.body1">Welcome to your new app.</MudText>
+</MudStack>
+
+@code {
+
+    
+    private List<BreadcrumbItem>? _breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Dashboard", "/"),
+        new BreadcrumbItem("Home", "/")
+    };
+
+
+}
