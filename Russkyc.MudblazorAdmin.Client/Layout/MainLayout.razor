@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using Russkyc.MudblazorAdmin.Client.Components.Shared
+@inherits LayoutComponentBase
 
 <MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode"/>
 <MudDialogProvider/>
@@ -9,9 +10,37 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
         Mudblazor Admin Template
         <MudSpacer/>
-        <MudToggleIconButton @bind-Toggled="@_isDarkMode"
-                             Icon="@Icons.Material.Rounded.LightMode"
-                             ToggledIcon="@Icons.Material.Rounded.DarkMode"/>
+        <MudStack Row="true" Spacing="1">
+            <MudToggleIconButton @bind-Toggled="@_isDarkMode"
+                                 Size="Size.Medium"
+                                 Class="p-2"
+                                 Icon="@Icons.Material.Rounded.LightMode"
+                                 ToggledIcon="@Icons.Material.Rounded.DarkMode"/>
+            <MudBadge Content="3" Color="Color.Error" Overlap="true" Class="my-auto">
+                <MudIconButton
+                    Size="Size.Medium"
+                    Class="p-2"
+                    Icon="@Icons.Material.Rounded.Notifications"/>
+            </MudBadge>
+            <MudMenu AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight">
+                <ActivatorContent>
+                    <MudChip Size="Size.Large" Color="Color.Inherit">
+                        <MudStack Spacing="0" Row="true" Class="flex flex-row">
+                            <MudAvatar>
+                                <MudImage Src="https://i.pravatar.cc/300"></MudImage>
+                            </MudAvatar>
+                            <MudText Class="my-auto" Typo="Typo.caption">User</MudText>
+                        </MudStack>
+                    </MudChip>
+                </ActivatorContent>
+                <ChildContent>
+                    <MudMenuItem>Profile</MudMenuItem>
+                    <MudMenuItem>Theme</MudMenuItem>
+                    <MudMenuItem>Usage</MudMenuItem>
+                    <MudMenuItem>Sign Out</MudMenuItem>
+                </ChildContent>
+            </MudMenu>
+        </MudStack>
     </MudAppBar>
     <MudDrawer ClipMode="DrawerClipMode.Always" MiniWidth="70px" Variant="DrawerVariant.Mini" @bind-Open="@_drawerOpen">
         <NavMenu/>
@@ -25,7 +54,7 @@
     bool _drawerOpen = true;
     private bool _isDarkMode;
     private MudThemeProvider _mudThemeProvider;
-    
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
