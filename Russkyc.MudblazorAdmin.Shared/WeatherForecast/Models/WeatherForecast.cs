@@ -20,47 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using MudBlazor.Services;
+namespace Russkyc.MudblazorAdmin.Shared.WeatherForecast.Models;
 
-namespace Russkyc.MudblazorAdmin.Server;
-
-public class Program
+public class WeatherForecast
 {
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
-        
-        builder.Services.AddMudServices();
-        builder.Services.AddRazorPages();
-        builder.Services.AddControllersWithViews();
-
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseWebAssemblyDebugging();
-        }
-        else
-        {
-            app.UseExceptionHandler("/Error");
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts();
-        }
-
-        app.UseHttpsRedirection();
-
-        app.UseBlazorFrameworkFiles();
-        app.UseStaticFiles();
-
-        app.UseRouting();
-
-
-        app.MapRazorPages();
-        app.MapControllers();
-        app.MapFallbackToFile("index.html");
-
-        app.Run();
-
-    }
+    public DateTime Date { get; set; }
+    public int TemperatureC { get; set; }
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public string? Summary { get; set; }
 }

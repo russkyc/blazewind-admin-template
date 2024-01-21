@@ -1,5 +1,6 @@
 ﻿@page "/weather"
 @using Russkyc.MudblazorAdmin.Shared.WeatherForecast
+@using Russkyc.MudblazorAdmin.Shared.WeatherForecast.Models
 @inject HttpClient Http
 
 <PageTitle>Weather</PageTitle>
@@ -53,7 +54,7 @@
     {
         try
         {
-            forecasts = await Http.GetFromJsonAsync<IEnumerable<WeatherForecast>>("/api/weatherforecasts");
+            forecasts = await Http.GetFromJsonAsync<IEnumerable<WeatherForecast>>("weatherforecast/all");
         }
         catch (Exception e)
         {

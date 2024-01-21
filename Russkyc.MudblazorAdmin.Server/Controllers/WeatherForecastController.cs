@@ -1,4 +1,4 @@
-﻿// MIT License
+// MIT License
 // 
 // Copyright (c) 2024 Russell Camo (Russkyc)
 // 
@@ -20,31 +20,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using MinimalApi.Endpoint;
-using Russkyc.MudblazorAdmin.Shared.WeatherForecast;
+using Microsoft.AspNetCore.Mvc;
+using Russkyc.MudblazorAdmin.Shared.WeatherForecast.Models;
 
-namespace Russkyc.MudblazorAdmin.Server.Api.WeatherEndpoints;
+namespace Russkyc.MudblazorAdmin.Server.Controllers;
 
-public class GetWeatherForecasts : IEndpoint<IEnumerable<WeatherForecast>>
+[ApiController]
+[Route("[controller]")]
+public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    public Task<IEnumerable<WeatherForecast>> HandleAsync()
+    [HttpGet("all")]
+    public IEnumerable<WeatherForecast> Get()
     {
-        return Task.FromResult(
-            Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
-                Date = DateTime.Today.AddDays(index),
+                Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            }));
-    }
-
-    public void AddRoute(IEndpointRouteBuilder app)
-    {
-        app.MapGet("/api/weatherforecasts", HandleAsync);
+            })
+            .ToArray();
     }
 }
