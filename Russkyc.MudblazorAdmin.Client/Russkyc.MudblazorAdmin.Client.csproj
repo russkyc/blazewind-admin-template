@@ -15,10 +15,15 @@
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css" />
       <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="wwwroot\css\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Russkyc.MudblazorAdmin.Shared\Russkyc.MudblazorAdmin.Shared.csproj" />
     </ItemGroup>
 
 </Project>

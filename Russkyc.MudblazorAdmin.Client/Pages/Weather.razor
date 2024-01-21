@@ -1,4 +1,5 @@
 ﻿@page "/weather"
+@using Russkyc.MudblazorAdmin.Shared.WeatherForecast
 @inject HttpClient Http
 
 <PageTitle>Weather</PageTitle>
@@ -40,7 +41,7 @@
 </MudStack>
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private IEnumerable<WeatherForecast>? forecasts;
 
     private List<BreadcrumbItem>? _breadcrumbItems = new()
     {
@@ -50,18 +51,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-    }
-
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        try
+        {
+            forecasts = await Http.GetFromJsonAsync<IEnumerable<WeatherForecast>>("/api/weatherforecasts");
+        }
+        catch (Exception e)
+        {
+            forecasts = null;
+        }
     }
 
 }

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Russkyc.MudblazorAdmin.Client", "Russkyc.MudblazorAdmin.Client\Russkyc.MudblazorAdmin.Client.csproj", "{DBDE6001-EADA-4338-8547-CCCB4BB7E0D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Russkyc.MudblazorAdmin.Server", "Russkyc.MudblazorAdmin.Server\Russkyc.MudblazorAdmin.Server.csproj", "{5203FA49-883B-4CC3-82A9-4866AB1FB2BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Russkyc.MudblazorAdmin.Shared", "Russkyc.MudblazorAdmin.Shared\Russkyc.MudblazorAdmin.Shared.csproj", "{C99A27C1-34B6-43A8-B48C-0533097C69C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBDE6001-EADA-4338-8547-CCCB4BB7E0D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBDE6001-EADA-4338-8547-CCCB4BB7E0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBDE6001-EADA-4338-8547-CCCB4BB7E0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBDE6001-EADA-4338-8547-CCCB4BB7E0D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5203FA49-883B-4CC3-82A9-4866AB1FB2BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5203FA49-883B-4CC3-82A9-4866AB1FB2BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5203FA49-883B-4CC3-82A9-4866AB1FB2BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5203FA49-883B-4CC3-82A9-4866AB1FB2BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C99A27C1-34B6-43A8-B48C-0533097C69C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C99A27C1-34B6-43A8-B48C-0533097C69C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C99A27C1-34B6-43A8-B48C-0533097C69C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C99A27C1-34B6-43A8-B48C-0533097C69C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

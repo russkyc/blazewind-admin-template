@@ -1,0 +1,10 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Russkyc.MudblazorAdmin.Client
+@namespace Russkyc.MudblazorAdmin.Server.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<component type="typeof(App)" render-mode="Server"/>
