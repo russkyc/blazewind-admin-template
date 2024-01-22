@@ -24,7 +24,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 
-namespace Russkyc.MudblazorAdmin.Client;
+namespace Russkyc.Blazewind.Admin.Client;
 
 public class Program
 {

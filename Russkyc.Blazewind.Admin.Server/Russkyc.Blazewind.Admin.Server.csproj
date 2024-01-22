@@ -17,8 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Russkyc.MudblazorAdmin.Client\Russkyc.MudblazorAdmin.Client.csproj" />
-      <ProjectReference Include="..\Russkyc.MudblazorAdmin.Shared\Russkyc.MudblazorAdmin.Shared.csproj" />
+      <ProjectReference Include="..\Russkyc.Blazewind.Admin.Client\Russkyc.Blazewind.Admin.Client.csproj" />
+      <ProjectReference Include="..\Russkyc.Blazewind.Admin.Shared\Russkyc.Blazewind.Admin.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>

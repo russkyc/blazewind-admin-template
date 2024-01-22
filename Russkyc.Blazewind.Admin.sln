@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Russkyc.MudblazorAdmin.Client", "Russkyc.MudblazorAdmin.Client\Russkyc.MudblazorAdmin.Client.csproj", "{DBDE6001-EADA-4338-8547-CCCB4BB7E0D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Russkyc.Blazewind.Admin.Client", "Russkyc.Blazewind.Admin.Client\Russkyc.Blazewind.Admin.Client.csproj", "{DBDE6001-EADA-4338-8547-CCCB4BB7E0D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Russkyc.MudblazorAdmin.Server", "Russkyc.MudblazorAdmin.Server\Russkyc.MudblazorAdmin.Server.csproj", "{5203FA49-883B-4CC3-82A9-4866AB1FB2BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Russkyc.Blazewind.Admin.Server", "Russkyc.Blazewind.Admin.Server\Russkyc.Blazewind.Admin.Server.csproj", "{5203FA49-883B-4CC3-82A9-4866AB1FB2BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Russkyc.MudblazorAdmin.Shared", "Russkyc.MudblazorAdmin.Shared\Russkyc.MudblazorAdmin.Shared.csproj", "{C99A27C1-34B6-43A8-B48C-0533097C69C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Russkyc.Blazewind.Admin.Shared", "Russkyc.Blazewind.Admin.Shared\Russkyc.Blazewind.Admin.Shared.csproj", "{C99A27C1-34B6-43A8-B48C-0533097C69C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

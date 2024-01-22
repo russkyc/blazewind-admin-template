@@ -22,7 +22,7 @@
 
 using MudBlazor.Services;
 
-namespace Russkyc.MudblazorAdmin.Server;
+namespace Russkyc.Blazewind.Admin.Server;
 
 public class Program
 {

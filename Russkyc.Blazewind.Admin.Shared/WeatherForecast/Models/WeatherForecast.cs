@@ -20,29 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Microsoft.AspNetCore.Mvc;
-using Russkyc.MudblazorAdmin.Shared.WeatherForecast.Models;
+namespace Russkyc.Blazewind.Admin.Shared.WeatherForecast.Models;
 
-namespace Russkyc.MudblazorAdmin.Server.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecast
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-    [HttpGet("all")]
-    public IEnumerable<WeatherForecast> Get()
-    {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
-    }
+    public DateTime Date { get; set; }
+    public int TemperatureC { get; set; }
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public string? Summary { get; set; }
 }
