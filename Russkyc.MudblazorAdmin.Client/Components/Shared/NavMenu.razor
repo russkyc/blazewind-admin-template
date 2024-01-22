@@ -1,17 +1,14 @@
-﻿<MudNavMenu Class="flex flex-col p-3" Rounded="true" Color="Color.Primary">
-    <MudStack Spacing="2">
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Dashboard" Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Hub" Href="/products" Match="NavLinkMatch.All">Products</MudNavLink>
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.CreditCard" Href="/billing" Match="NavLinkMatch.All">Billing</MudNavLink>
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Notes" Href="/invoice" Match="NavLinkMatch.All">Invoice</MudNavLink>
-        <MudNavGroup Class="flex flex-col" Icon="@Icons.Material.Rounded.Pages" Title="Pages">
-            <MudStack Class="my-2" Spacing="2">
-                <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Dashboard" Href="/invoice" Match="NavLinkMatch.All">Invoice</MudNavLink>
-                <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Dashboard" Href="/invoice" Match="NavLinkMatch.All">Invoice</MudNavLink>
-                <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Dashboard" Href="/invoice" Match="NavLinkMatch.All">Invoice</MudNavLink>
-            </MudStack>
-        </MudNavGroup>
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.AddBox" Href="/counter" Match="NavLinkMatch.Prefix">Counter</MudNavLink>
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.WbSunny" Href="/weather" Match="NavLinkMatch.Prefix">Weather</MudNavLink>
-    </MudStack>
+﻿<MudNavMenu Class="flex flex-col m-2 space-y-2" Rounded="true" Color="Color.Primary">
+    <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Dashboard" Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
+    <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Apps" Href="/products" Match="NavLinkMatch.All">Products</MudNavLink>
+    <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.CreditCard" Href="/billing" Match="NavLinkMatch.All">Billing</MudNavLink>
+    <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Notes" Href="/invoice" Match="NavLinkMatch.All">Invoice</MudNavLink>
+    <MudNavGroup Icon="@Icons.Material.Rounded.VerifiedUser" Title="Authentication" HideExpandIcon="true">
+        <MudStack Class="my-2" Spacing="2">
+            <MudNavLink ForceLoad="true" IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Person" Href="/login" Match="NavLinkMatch.All">Login</MudNavLink>
+            <MudNavLink ForceLoad="true" IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.HowToReg" Href="/register" Match="NavLinkMatch.All">Register</MudNavLink>
+        </MudStack>
+    </MudNavGroup>
+    <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.AddBox" Href="/counter" Match="NavLinkMatch.Prefix">Counter</MudNavLink>
+    <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.WbSunny" Href="/weather" Match="NavLinkMatch.Prefix">Weather</MudNavLink>
 </MudNavMenu>

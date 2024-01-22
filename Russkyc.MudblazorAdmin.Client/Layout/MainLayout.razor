@@ -1,30 +1,33 @@
 ﻿@using Russkyc.MudblazorAdmin.Client.Components.Shared
+@using MudBlazor.Utilities
 @inherits LayoutComponentBase
 
-<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode"/>
+<MudThemeProvider Theme="@DashboardTheme" @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode"/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 
-<MudLayout>
-    <MudAppBar Elevation="0" Fixed="true">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
-        Mudblazor Admin Template
+<MudLayout Class="@(_isDarkMode ? "dark" : null)">
+    <MudAppBar Elevation="0" Fixed="true" Class="backdrop-blur-sm">
+        <MudIconButton Class="rounded-lg" Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
+        <MudText Color="Color.Default" Typo="Typo.h6" Class="my-auto text-[#424242] dark:text-white">Blazewind Admin Template</MudText>
         <MudSpacer/>
         <MudStack Row="true" Spacing="1">
             <MudToggleIconButton @bind-Toggled="@_isDarkMode"
                                  Size="Size.Medium"
                                  Class="p-2 my-auto"
+                                 Color="Color.Default"
                                  Icon="@Icons.Material.Rounded.LightMode"
                                  ToggledIcon="@Icons.Material.Rounded.DarkMode"/>
             <MudBadge Content="3" Color="Color.Error" Overlap="true" Class="my-auto">
                 <MudIconButton
                     Size="Size.Medium"
                     Class="p-2"
+                    Color="Color.Default"
                     Icon="@Icons.Material.Rounded.Notifications"/>
             </MudBadge>
             <MudMenu AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight">
                 <ActivatorContent>
-                    <MudChip Size="Size.Large" Color="Color.Inherit">
+                    <MudChip Size="Size.Large" Color="Color.Default">
                         <MudStack Spacing="0" Row="true" Class="flex flex-row">
                             <MudAvatar>
                                 <MudImage Src="https://i.pravatar.cc/300"></MudImage>
@@ -42,11 +45,13 @@
             </MudMenu>
         </MudStack>
     </MudAppBar>
-    <MudDrawer ClipMode="DrawerClipMode.Always" MiniWidth="70px" Variant="DrawerVariant.Mini" @bind-Open="@_drawerOpen">
+    <MudDrawer Fixed="true" Elevation="0" DisableOverlay="true" ClipMode="DrawerClipMode.Always" MiniWidth="72px" Variant="DrawerVariant.Mini" @bind-Open="@_drawerOpen">
         <NavMenu/>
     </MudDrawer>
     <MudMainContent>
-        @Body
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+            @Body
+        </MudContainer>
     </MudMainContent>
 </MudLayout>
 
@@ -54,6 +59,48 @@
     bool _drawerOpen = true;
     private bool _isDarkMode;
     private MudThemeProvider _mudThemeProvider;
+
+    MudTheme DashboardTheme = new MudTheme()
+    {
+        Palette = new PaletteLight()
+        {
+            Primary = new MudColor("#3b82f6"),
+            AppbarBackground = new MudColor("#ffffff70"),
+            Background = new MudColor("#f0f2f5"),
+            BackgroundGrey = new MudColor("#f7f8f9"),
+            DrawerBackground = new MudColor("#f7f8f9"),
+            GrayDefault = "#f7f8f9",
+            GrayDark = "#f7f8f9",
+            GrayDarker = "#f7f8f9",
+            GrayLight = "#f7f8f9",
+            GrayLighter = "#f7f8f9",
+            LinesDefault = "#d1d5db",
+            Surface = "#f7f8f9",
+            ChipDefault = new MudColor("#ffffff")
+        },
+        PaletteDark = new PaletteDark()
+        {
+            Primary = new MudColor("#3b82f6"),
+            AppbarBackground = new MudColor("#0d152670"),
+            Background = new MudColor("#020817"),
+            BackgroundGrey = new MudColor("#0d1526"),
+            DrawerBackground = new MudColor("#030b1f"),
+            GrayDefault = "#0d1526",
+            GrayDark = "#090D1D",
+            GrayDarker = "#050714",
+            GrayLight = "#151B2E",
+            GrayLighter = "#1C2137",
+            LinesDefault = "#232A40",
+            Surface = "#0d1526",
+            ChipDefault = new MudColor("#1C2137")
+        },
+        LayoutProperties = new LayoutProperties()
+        {
+            DrawerWidthLeft = "260px",
+            DrawerWidthRight = "300px",
+            DefaultBorderRadius = ".3rem"
+        }
+    };
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
