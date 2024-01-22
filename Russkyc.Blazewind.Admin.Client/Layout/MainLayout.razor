@@ -8,8 +8,10 @@
 
 <MudLayout Class="@(_isDarkMode ? "dark" : null)">
     <MudAppBar Elevation="0" Fixed="true" Class="backdrop-blur-sm">
-        <MudIconButton Class="rounded-lg" Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
-        <MudText Color="Color.Default" Typo="Typo.h6" Class="my-auto text-[#424242] dark:text-white">Blazewind Admin Template</MudText>
+        <MudStack Row="true" Spacing="2">
+            <MudIconButton Class="rounded-lg" Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
+            <MudText Color="Color.Default" Typo="Typo.h6" Class="my-auto text-[#424242] dark:text-white">Blazewind Admin Template</MudText>
+        </MudStack>
         <MudSpacer/>
         <MudStack Row="true" Spacing="1">
             <MudToggleIconButton @bind-Toggled="@_isDarkMode"

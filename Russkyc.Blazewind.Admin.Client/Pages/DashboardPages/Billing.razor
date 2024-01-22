@@ -1,7 +1,13 @@
 ﻿@page "/billing"
 
-<h3>Billing</h3>
+<MudStack Spacing="4" Class="my-4">
+    <MudBreadcrumbs Items="@_breadcrumbItems"></MudBreadcrumbs>
+</MudStack>
 
 @code {
-    
+    private List<BreadcrumbItem>? _breadcrumbItems = new()
+    {
+        new BreadcrumbItem("Dashboard", "/"),
+        new BreadcrumbItem("Billing", "/billing")
+    };
 }
