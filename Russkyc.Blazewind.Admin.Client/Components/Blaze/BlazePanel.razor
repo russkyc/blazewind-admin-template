@@ -1,0 +1,12 @@
+﻿@inherits ComponentBase
+
+<MudPaper Elevation="0"
+          Class="flex flex-col pa-4 rounded-lg h-full">
+    @ChildContent
+</MudPaper>
+
+@code {
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+}

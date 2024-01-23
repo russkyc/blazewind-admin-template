@@ -15,7 +15,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Russkyc.Blazewind.Admin.Shared\Russkyc.Blazewind.Admin.Shared.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\PageTemplates\" />
-  </ItemGroup>
 </Project>
