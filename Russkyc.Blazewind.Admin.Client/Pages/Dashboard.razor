@@ -1,46 +1,73 @@
 ﻿@page "/"
-@using Russkyc.Blazewind.Admin.Client.Components.Cards
 
-<PageTitle>Dashboard</PageTitle>
+@inherits ComponentBase
+<BlazePage Title="Dashboard">
+    <MudGrid>
+        <MudItem xs="12"
+                 sm="6"
+                 lg="3">
+            <BlazeSummary Content="400"
+                         Description="Sales"
+                         DisplayColor="--mud-palette-primary"
+                         Icon="@Icons.Material.Rounded.CurrencyExchange"/>
+        </MudItem>
+        <MudItem xs="12" sm="6" lg="3">
+            <BlazeSummary Content="400"
+                         Description="Sales"
+                         DisplayColor="--mud-palette-secondary"
+                         Icon="@Icons.Material.Rounded.CurrencyExchange"/>
+        </MudItem>
+        <MudItem xs="12" sm="6" lg="3">
+            <BlazeSummary Content="400"
+                         Description="Sales"
+                         DisplayColor="--mud-palette-tertiary"
+                         Icon="@Icons.Material.Rounded.CurrencyExchange"/>
+        </MudItem>
+        <MudItem xs="12" sm="6" lg="3">
+            <BlazeSummary Content="400"
+                         Description="Sales"
+                         DisplayColor="--mud-palette-info"
+                         Icon="@Icons.Material.Rounded.CurrencyExchange"/>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudPaper Elevation="0"
+                              Class="pa-4 rounded-lg h-[200px]">
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudPaper Elevation="0"
+                              Class="pa-4 rounded-lg h-[200px]">
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudPaper Elevation="0"
+                      Class="pa-4 rounded-lg h-full">
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <MudPaper Elevation="0"
+                      Class="pa-4 rounded-lg h-[200px]">
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <MudPaper Elevation="0"
+                      Class="pa-4 rounded-lg h-[200px]">
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="12" md="4">
+            <MudPaper Elevation="0"
+                      Class="pa-4 rounded-lg h-[200px]">
 
-<MudGrid Class="my-4">
-    <MudItem xs="12" sm="6" lg="3">
-        <SummaryCard />
-    </MudItem>
-    <MudItem xs="12" sm="6" lg="3">
-        <MudPaper Elevation="0" Class="pa-4 rounded-lg h-[150px]"></MudPaper>
-    </MudItem>
-    <MudItem xs="12" sm="6" lg="3">
-        <MudPaper Elevation="0" Class="pa-4 rounded-lg h-[150px]"></MudPaper>
-    </MudItem>
-    <MudItem xs="12" sm="6" lg="3">
-        <MudPaper Elevation="0" Class="pa-4 rounded-lg h-[150px]"></MudPaper>
-    </MudItem>
-    <MudItem xs="12" sm="6">
-        <MudGrid>
-            <MudItem xs="12">
-                <MudPaper Elevation="0" Class="pa-4 rounded-lg h-[200px]"></MudPaper>
-            </MudItem>
-            <MudItem xs="12">
-                <MudPaper Elevation="0" Class="pa-4 rounded-lg h-[200px]"></MudPaper>
-            </MudItem>
-        </MudGrid>
-    </MudItem>
-    <MudItem xs="12" sm="6">
-        <MudPaper Elevation="0" Class="pa-4 rounded-lg h-full"></MudPaper>
-    </MudItem>
-    <MudItem xs="12" sm="6" md="4">
-        <MudPaper Elevation="0" Class="pa-4 rounded-lg h-[200px]"></MudPaper>
-    </MudItem>
-    <MudItem xs="12" sm="6" md="4">
-        <MudPaper Elevation="0" Class="pa-4 rounded-lg h-[200px]"></MudPaper>
-    </MudItem>
-    <MudItem xs="12" sm="12" md="4">
-        <MudPaper Elevation="0" Class="pa-4 rounded-lg h-[200px]"></MudPaper>
-    </MudItem>
-</MudGrid>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</BlazePage>
 
 
 @code {
-
+    
 }

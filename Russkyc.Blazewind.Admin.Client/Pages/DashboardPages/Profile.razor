@@ -1,15 +1,18 @@
 ﻿@page "/profile"
 
-<MudStack Spacing="4" Class="my-4">
-    <MudBreadcrumbs Items="@_breadcrumbItems"></MudBreadcrumbs>
-</MudStack>
+<BlazePage Title="Profile" Breadcrumbs="@_breadCrumbs">
+    <MudGrid>
+        <MudItem sm="12">
+            <MudPaper Class="h-full"></MudPaper>
+        </MudItem>
+    </MudGrid>
+</BlazePage>
 
 @code {
-
-    private List<BreadcrumbItem>? _breadcrumbItems = new()
-    {
+    
+    private BreadcrumbItem[] _breadCrumbs = [
         new BreadcrumbItem("Dashboard", "/"),
         new BreadcrumbItem("Profile", "/profile")
-    };
-
+    ];
+    
 }

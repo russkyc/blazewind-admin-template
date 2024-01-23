@@ -1,40 +1,58 @@
 ﻿@using Russkyc.Blazewind.Admin.Client.Components.Shared
-@using MudBlazor.Utilities
 @inherits LayoutComponentBase
 
-<MudThemeProvider Theme="@DashboardTheme" @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode"/>
+<MudThemeProvider @ref="@_mudThemeProvider"
+                  Theme="@_baseTheme"
+                  @bind-IsDarkMode="@_isDarkMode"/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 
 <MudLayout Class="@(_isDarkMode ? "dark" : null)">
-    <MudAppBar Elevation="0" Fixed="true" Class="backdrop-blur-sm">
-        <MudStack Row="true" Spacing="2">
-            <MudIconButton Class="rounded-lg" Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
-            <MudText Color="Color.Default" Typo="Typo.h6" Class="my-auto text-[#424242] dark:text-white">Blazewind Admin Template</MudText>
+    <MudAppBar Elevation="0"
+               Fixed="true"
+               Class="bg-[--mud-palette-appbar-background] bg-[--mud-palette-appbar-background90] backdrop-blur-sm">
+        <MudStack Row="true"
+                  Spacing="2">
+            <MudIconButton Class="rounded-lg"
+                           Icon="@Icons.Material.Filled.Menu"
+                           Edge="Edge.Start"
+                           OnClick="@((e) => DrawerToggle())"/>
+            <MudText Color="Color.Default"
+                     Typo="Typo.h6"
+                     Class="my-auto text-[#424242] dark:text-white">Blazewind</MudText>
         </MudStack>
         <MudSpacer/>
-        <MudStack Row="true" Spacing="1">
+        <MudStack Row="true"
+                  Spacing="1">
             <MudToggleIconButton @bind-Toggled="@_isDarkMode"
                                  Size="Size.Medium"
-                                 Class="p-2 my-auto"
                                  Color="Color.Default"
                                  Icon="@Icons.Material.Rounded.LightMode"
-                                 ToggledIcon="@Icons.Material.Rounded.DarkMode"/>
-            <MudBadge Content="3" Color="Color.Error" Overlap="true" Class="my-auto">
+                                 ToggledIcon="@Icons.Material.Rounded.DarkMode"
+                                 Class="p-2 my-auto"/>
+            <MudBadge Content="3"
+                      Color="Color.Error"
+                      Overlap="true"
+                      Class="my-auto">
                 <MudIconButton
                     Size="Size.Medium"
                     Class="p-2"
                     Color="Color.Default"
                     Icon="@Icons.Material.Rounded.Notifications"/>
             </MudBadge>
-            <MudMenu AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight">
+            <MudMenu AnchorOrigin="Origin.BottomRight"
+                     TransformOrigin="Origin.TopRight">
                 <ActivatorContent>
-                    <MudChip Size="Size.Large" Color="Color.Default">
-                        <MudStack Spacing="0" Row="true" Class="flex flex-row">
+                    <MudChip Size="Size.Large"
+                             Color="Color.Default">
+                        <MudStack Spacing="0"
+                                  Row="true"
+                                  Class="flex flex-row">
                             <MudAvatar>
                                 <MudImage Src="https://i.pravatar.cc/300"></MudImage>
                             </MudAvatar>
-                            <MudText Class="my-auto" Typo="Typo.caption">User</MudText>
+                            <MudText Typo="Typo.caption"
+                                     Class="my-auto">User</MudText>
                         </MudStack>
                     </MudChip>
                 </ActivatorContent>
@@ -47,7 +65,13 @@
             </MudMenu>
         </MudStack>
     </MudAppBar>
-    <MudDrawer Fixed="true" Elevation="0" DisableOverlay="true" ClipMode="DrawerClipMode.Always" MiniWidth="72px" Variant="DrawerVariant.Mini" @bind-Open="@_drawerOpen">
+    <MudDrawer Fixed="true"
+               Elevation="0"
+               DisableOverlay="true"
+               ClipMode="DrawerClipMode.Always"
+               MiniWidth="72px"
+               Variant="DrawerVariant.Mini"
+               @bind-Open="@_drawerOpen">
         <NavMenu/>
     </MudDrawer>
     <MudMainContent>
@@ -62,45 +86,12 @@
     private bool _isDarkMode;
     private MudThemeProvider _mudThemeProvider;
 
-    MudTheme DashboardTheme = new MudTheme()
+    private MudTheme _baseTheme = new MudTheme()
     {
-        Palette = new PaletteLight()
+        Palette = new Palette()
         {
-            Primary = new MudColor("#3b82f6"),
-            AppbarBackground = new MudColor("#ffffff70"),
-            Background = new MudColor("#f0f2f5"),
-            BackgroundGrey = new MudColor("#f7f8f9"),
-            DrawerBackground = new MudColor("#f7f8f9"),
-            GrayDefault = "#f7f8f9",
-            GrayDark = "#f7f8f9",
-            GrayDarker = "#f7f8f9",
-            GrayLight = "#f7f8f9",
-            GrayLighter = "#f7f8f9",
-            LinesDefault = "#d1d5db",
-            Surface = "#f7f8f9",
-            ChipDefault = new MudColor("#ffffff")
-        },
-        PaletteDark = new PaletteDark()
-        {
-            Primary = new MudColor("#3b82f6"),
-            AppbarBackground = new MudColor("#0d152670"),
-            Background = new MudColor("#020817"),
-            BackgroundGrey = new MudColor("#0d1526"),
-            DrawerBackground = new MudColor("#030b1f"),
-            GrayDefault = "#0d1526",
-            GrayDark = "#090D1D",
-            GrayDarker = "#050714",
-            GrayLight = "#151B2E",
-            GrayLighter = "#1C2137",
-            LinesDefault = "#232A40",
-            Surface = "#0d1526",
-            ChipDefault = new MudColor("#1C2137")
-        },
-        LayoutProperties = new LayoutProperties()
-        {
-            DrawerWidthLeft = "260px",
-            DrawerWidthRight = "300px",
-            DefaultBorderRadius = ".3rem"
+            AppbarBackground = "#ffffff",
+            Background = "#f8f7fa"
         }
     };
 
@@ -108,8 +99,7 @@
     {
         if (firstRender)
         {
-            //_isDarkMode = await _mudThemeProvider.GetSystemPreference();
-            _isDarkMode = true;
+            await _mudThemeProvider.WatchSystemPreference(OnSystemPreferenceChanged);
             StateHasChanged();
         }
     }
@@ -117,6 +107,11 @@
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
+    }
+
+    async Task OnSystemPreferenceChanged(bool isDarkMode)
+    {
+        _isDarkMode = isDarkMode;
     }
 
 }

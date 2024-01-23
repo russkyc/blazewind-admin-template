@@ -1,0 +1,28 @@
+﻿@inherits ComponentBase
+
+<PageTitle>@Title</PageTitle>
+
+<MudStack Class="flex my-8"
+          Spacing="6">
+    <MudStack Spacing="0">
+        <MudText Class="text-2xl font-medium">@Title</MudText>
+        @if (ShowBreadCrumbs)
+        {
+            if (Breadcrumbs != null)
+            {
+                <MudBreadcrumbs Items="@Breadcrumbs.ToList()"
+                                Class="px-0"/>
+            }
+        }
+    </MudStack>
+    @ChildContent
+</MudStack>
+
+
+@code {
+
+    [Parameter] public string Title { get; set; }
+    [Parameter] public bool ShowBreadCrumbs { get; set; } = true;
+    [Parameter] public BreadcrumbItem[]? Breadcrumbs { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+}

@@ -1,0 +1,32 @@
+﻿@using ApexCharts
+@using MudBlazor.Extensions
+@using System.Globalization
+@using MudBlazor.Utilities
+@using Size = MudBlazor.Size
+@using Color = MudBlazor.Color
+
+<MudPaper Elevation="0"
+          Class="flex flex-row rounded-lg p-4">
+    <MudStack Spacing="1"
+              Class="my-auto">
+        <MudText Class="text-2xl font-medium">@Content</MudText>
+        <MudText Color="Color.Inherit"
+                 Class="text-md opacity-50 dark:text-gray-200">@Description</MudText>
+        <MudSpacer/>
+    </MudStack>
+    <MudSpacer/>
+    <div class="flex w-16 h-16 rounded-lg text-white bg-[@DisplayColor]">
+        <MudIcon Icon="@Icon"
+                 Size="Size.Large"
+                 Color="Color.Inherit"
+                 Class="m-auto"></MudIcon>
+    </div>
+</MudPaper>
+
+@code {
+
+    [Parameter] public string Content { get; set; }
+    [Parameter] public string Description { get; set; }
+    [Parameter] public string Icon { get; set; }
+    [Parameter] public string DisplayColor { get; set; }
+}
