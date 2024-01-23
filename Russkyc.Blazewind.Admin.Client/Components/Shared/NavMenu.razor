@@ -1,15 +1,55 @@
-﻿<MudNavMenu Class="m-2" Rounded="true" Color="Color.Primary">
+﻿<MudNavMenu Rounded="true"
+            Color="Color.Primary"
+            Class="m-2">
     <MudStack Spacing="2">
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Dashboard" Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Apps" Href="/products" Match="NavLinkMatch.All">Products</MudNavLink>
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.CreditCard" Href="/billing" Match="NavLinkMatch.All">Billing</MudNavLink>
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Notes" Href="/invoice" Match="NavLinkMatch.All">Invoice</MudNavLink>
-        <MudNavGroup Icon="@Icons.Material.Rounded.VerifiedUser" Title="Authentication" HideExpandIcon="true">
-            <MudStack Class="my-2" Spacing="2">
-                <MudNavLink ForceLoad="true" IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Person" Href="/login" Match="NavLinkMatch.All">Login</MudNavLink>
-                <MudNavLink ForceLoad="true" IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.HowToReg" Href="/register" Match="NavLinkMatch.All">Register</MudNavLink>
+        <MudNavLink Href="/"
+                    IconColor="Color.Inherit"
+                    Icon="@Icons.Material.Rounded.Dashboard"
+                    Match="NavLinkMatch.All">
+            Dashboard
+        </MudNavLink>
+        <MudNavLink Href="/products"
+                    IconColor="Color.Inherit"
+                    Icon="@Icons.Material.Rounded.Apps"
+                    Match="NavLinkMatch.All">
+            Products
+        </MudNavLink>
+        <MudNavLink Href="/billing"
+                    IconColor="Color.Inherit"
+                    Icon="@Icons.Material.Rounded.CreditCard"
+                    Match="NavLinkMatch.All">
+            Billing
+        </MudNavLink>
+        <MudNavLink Href="/invoice"
+                    IconColor="Color.Inherit"
+                    Icon="@Icons.Material.Rounded.Notes"
+                    Match="NavLinkMatch.All">
+            Invoice
+        </MudNavLink>
+        <MudNavGroup Icon="@Icons.Material.Rounded.VerifiedUser"
+                     Title="Authentication"
+                     HideExpandIcon="true">
+            <MudStack Spacing="2"
+                      Class="my-2">
+                <MudNavLink Href="/login"
+                            IconColor="Color.Inherit"
+                            Icon="@Icons.Material.Rounded.Person"
+                            Match="NavLinkMatch.All">
+                    Login
+                </MudNavLink>
+                <MudNavLink Href="/register"
+                            IconColor="Color.Inherit"
+                            Icon="@Icons.Material.Rounded.HowToReg"
+                            Match="NavLinkMatch.All">
+                    Register
+                </MudNavLink>
             </MudStack>
         </MudNavGroup>
-        <MudNavLink IconColor="Color.Inherit" Icon="@Icons.Material.Rounded.Person" Href="/profile" Match="NavLinkMatch.All">Profile</MudNavLink>
+        <MudNavLink Href="/profile"
+                    IconColor="Color.Inherit"
+                    Icon="@Icons.Material.Rounded.Person"
+                    Match="NavLinkMatch.All">
+            Profile
+        </MudNavLink>
     </MudStack>
 </MudNavMenu>
