@@ -1,4 +1,4 @@
-// MIT License
+﻿// MIT License
 // 
 // Copyright (c) 2024 Russell Camo (Russkyc)
 // 
@@ -20,28 +20,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using MudBlazor;
-using MudBlazor.Services;
+using System.Text;
+using System.Text.Json;
 
-namespace Russkyc.Blazewind.Admin.Client;
+namespace Russkyc.Blazewind.Admin.Shared.Utilities;
 
-public class Program
+public static class PayloadExtensions
 {
-    public static async Task Main(string[] args)
+    public static StringContent ToJsonPayload<T>(this T payload)
     {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.RootComponents.Add<App>("#app");
-        builder.RootComponents.Add<HeadOutlet>("head::after");
-
-        builder.Services.AddMudServices(options =>
-        {
-            options.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomRight;
-        });
-
-        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-        await builder.Build().RunAsync();
+        var stringPayload = JsonSerializer.Serialize(payload);
+        return new StringContent(stringPayload, Encoding.UTF8, "application/json");
     }
 }

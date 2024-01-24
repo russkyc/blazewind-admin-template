@@ -1,4 +1,4 @@
-// MIT License
+﻿// MIT License
 // 
 // Copyright (c) 2024 Russell Camo (Russkyc)
 // 
@@ -20,12 +20,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Russkyc.Blazewind.Admin.Shared.WeatherForecast.Models;
+namespace Russkyc.Blazewind.Admin.Shared.Models;
 
-public class WeatherForecast
+public class Product
 {
-    public DateTime Date { get; set; }
-    public int TemperatureC { get; set; }
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    public string? Summary { get; set; }
-}
+    public int Id { get; set; }
+    public string Image { get; set; }
+    public string Name { get; set; }
+    public string Type { get; set; }
+    public string Description { get; set; }
+    public string Category { get; set; }
+    public int Stock { get; set; }
+    public DateTime Created { get; set; } = DateTime.Now;
+    public DateTime Updated { get; set; } = DateTime.Now;
+};

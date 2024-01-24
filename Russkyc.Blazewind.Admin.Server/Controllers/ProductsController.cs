@@ -1,4 +1,4 @@
-// MIT License
+﻿// MIT License
 // 
 // Copyright (c) 2024 Russell Camo (Russkyc)
 // 
@@ -20,28 +20,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using MudBlazor;
-using MudBlazor.Services;
+using Microsoft.AspNetCore.Mvc;
+using Russkyc.Blazewind.Admin.Server.Data.Repos;
+using Russkyc.Blazewind.Admin.Shared.Models;
 
-namespace Russkyc.Blazewind.Admin.Client;
+namespace Russkyc.Blazewind.Admin.Server.Controllers;
 
-public class Program
+[ApiController]
+[Route("api/[controller]")]
+public class ProductsController : Controller
 {
-    public static async Task Main(string[] args)
+    private readonly ProductRepo _productRepo;
+
+    public ProductsController(ProductRepo productRepo)
     {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.RootComponents.Add<App>("#app");
-        builder.RootComponents.Add<HeadOutlet>("head::after");
+        _productRepo = productRepo;
+    }
 
-        builder.Services.AddMudServices(options =>
-        {
-            options.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomRight;
-        });
+    [HttpGet("all")]
+    public IEnumerable<Product> GetProducts()
+    {
+        return _productRepo.GetAll();
+    }
+    
+    [HttpGet("count-all")]
+    public int GetProductsCount()
+    {
+        return _productRepo.CountAll();
+    }
 
-        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-        await builder.Build().RunAsync();
+    [HttpDelete("delete-product/{id:int}")]
+    public bool Delete([FromRoute] int id)
+    {
+        return _productRepo.Delete(id);
     }
 }

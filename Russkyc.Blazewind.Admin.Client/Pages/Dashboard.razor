@@ -1,33 +1,36 @@
 ﻿@page "/"
+@using ApexCharts
+@using Russkyc.Blazewind.Admin.Shared.Models
 
-@inherits ComponentBase
+@inject HttpClient HttpClient
+
 <BlazePage Title="Dashboard">
     <MudGrid>
         <MudItem xs="12"
                  sm="6"
                  lg="3">
-            <BlazeSummary Content="400"
-                         Description="Sales"
-                         DisplayColor="--mud-palette-primary"
-                         Icon="@Icons.Material.Rounded.CurrencyExchange"/>
+            <BlazeSummary Content="@_productsCount.ToString("N0")"
+                          Description="Products"
+                          DisplayColor="--mud-palette-primary"
+                          Icon="@Icons.Material.Rounded.CurrencyExchange"/>
         </MudItem>
         <MudItem xs="12" sm="6" lg="3">
             <BlazeSummary Content="400"
-                         Description="Sales"
-                         DisplayColor="--mud-palette-secondary"
-                         Icon="@Icons.Material.Rounded.CurrencyExchange"/>
+                          Description="Sales"
+                          DisplayColor="--mud-palette-secondary"
+                          Icon="@Icons.Material.Rounded.CurrencyExchange"/>
         </MudItem>
         <MudItem xs="12" sm="6" lg="3">
             <BlazeSummary Content="400"
-                         Description="Sales"
-                         DisplayColor="--mud-palette-tertiary"
-                         Icon="@Icons.Material.Rounded.CurrencyExchange"/>
+                          Description="Sales"
+                          DisplayColor="--mud-palette-tertiary"
+                          Icon="@Icons.Material.Rounded.CurrencyExchange"/>
         </MudItem>
         <MudItem xs="12" sm="6" lg="3">
             <BlazeSummary Content="400"
-                         Description="Sales"
-                         DisplayColor="--mud-palette-info"
-                         Icon="@Icons.Material.Rounded.CurrencyExchange"/>
+                          Description="Sales"
+                          DisplayColor="--mud-palette-info"
+                          Icon="@Icons.Material.Rounded.CurrencyExchange"/>
         </MudItem>
         <MudItem xs="12" sm="6">
             <MudGrid>
@@ -46,6 +49,16 @@
         <MudItem xs="12" sm="6">
             <MudPaper Elevation="0"
                       Class="pa-4 rounded-lg h-full">
+                <ApexChart TItem="Product"
+                           Title="Product Count">
+                    <ApexPointSeries @ref="@_productsChart"
+                                     TItem="Product"
+                                     Items="@_products"
+                                     Name="Gross Value"
+                                     XValue="@(e => e.Category)"
+                                     YValue="@(e => e.Stock)"
+                                     SeriesType="SeriesType.Bar"/>
+                </ApexChart>
             </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="6" md="4">
@@ -69,5 +82,17 @@
 
 
 @code {
-    
+
+    private int _productsCount;
+    private ApexPointSeries<Product> _productsChart;
+    private IEnumerable<Product>? _products = Enumerable.Empty<Product>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _productsCount = await HttpClient.GetFromJsonAsync<int>("api/products/count-all");
+        _products = await HttpClient.GetFromJsonAsync<IEnumerable<Product>>("api/products/all");
+        await _productsChart.Chart.UpdateSeriesAsync();
+        await InvokeAsync(StateHasChanged);
+    }
+
 }

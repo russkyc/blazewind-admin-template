@@ -1,0 +1,170 @@
+﻿@page "/products"
+@using Russkyc.Blazewind.Admin.Shared.Models
+
+<BlazePage Title="Products" Breadcrumbs="@_breadCrumbs">
+    <MudGrid>
+        <MudItem sm="12">
+            <BlazePanel Title="Products"
+                        PanelActionsSpacing="4">
+                <PanelActionsTemplate>
+                    <MudInput T="string"
+                              @bind-Value="@_searchString"
+                              Immediate="true"
+                              Variant="Variant.Outlined"
+                              Placeholder="Type to search"
+                              Margin="Margin.Dense"
+                              AdornmentIcon="@Icons.Material.Rounded.Search">
+                    </MudInput>
+                    <MudButton Color="Color.Primary"
+                               DisableElevation="true"
+                               StartIcon="@Icons.Material.Rounded.Add"
+                               Variant="Variant.Filled">
+                        <MudText>
+                            Add Product
+                        </MudText>
+                    </MudButton>
+                </PanelActionsTemplate>
+                <ChildContent>
+                    @if (_products == null)
+                    {
+                        <MudStack Class="flex mx-auto opacity-60" Row="true">
+                            <div
+                                class="inline-block h-8 w-8 animate-spin rounded-full border-[.15rem] border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                                role="status">
+                            </div>
+                            <MudText Class="my-auto">Loading Data</MudText>
+                        </MudStack>
+                    }
+                    else
+                    {
+                        <MudDataGrid Elevation="0"
+                                     Items="@_products"
+                                     Filterable="false"
+                                     QuickFilter="@_quickFilter"
+                                     SortMode="@SortMode.None"
+                                     Groupable="false">
+                            <Columns>
+                                <PropertyColumn Property="x => x.Image">
+                                    <HeaderTemplate>
+                                        <MudStack Class="mx-auto">
+                                            Image
+                                        </MudStack>
+                                    </HeaderTemplate>
+                                    <CellTemplate>
+                                        <MudStack Class="flex">
+                                            <MudImage Class="m-auto w-14 h-14 rounded-lg" Src="@context.Item.Image"/>
+                                        </MudStack>
+                                    </CellTemplate>
+                                </PropertyColumn>
+                                <PropertyColumn Property="x => x.Name"
+                                                Filterable="true"/>
+                                <PropertyColumn Property="x => x.Type"
+                                                Filterable="true"/>
+                                <PropertyColumn Property="x => x.Description"
+                                                Filterable="true"
+                                                HeaderClass="flex"
+                                                CellClass="max-w-40 overflow-hidden">
+                                    <CellTemplate>
+                                        <p class="truncate">@context.Item.Description</p>
+                                    </CellTemplate>
+                                </PropertyColumn>
+                                <PropertyColumn Property="x => x.Category"
+                                                Filterable="true"/>
+                                <PropertyColumn Property="x => x.Stock"
+                                                Filterable="true"/>
+                                <TemplateColumn Title="Actions">
+                                    <HeaderTemplate>
+                                        <MudStack Class="mx-auto">
+                                            Actions
+                                        </MudStack>
+                                    </HeaderTemplate>
+                                    <CellTemplate>
+                                        <MudStack>
+                                            <MudStack Class="mx-auto" Row="true">
+                                                <MudIconButton Size="@Size.Small"
+                                                               Variant="@Variant.Filled"
+                                                               Color="@Color.Inherit"
+                                                               DisableElevation="true"
+                                                               Icon="@Icons.Material.Outlined.Edit"
+                                                               Class="my-auto"/>
+                                                <MudIconButton Size="@Size.Small"
+                                                               Variant="@Variant.Filled"
+                                                               Color="@Color.Default"
+                                                               DisableElevation="true"
+                                                               Icon="@Icons.Material.Outlined.Delete"
+                                                               OnClick="@(() => DeleteProduct(context.Item))"
+                                                               Class="my-auto"/>
+                                            </MudStack>
+                                        </MudStack>
+                                    </CellTemplate>
+                                </TemplateColumn>
+                            </Columns>
+                            <PagerContent>
+                                <MudDataGridPager T="Product"/>
+                            </PagerContent>
+                        </MudDataGrid>
+                    }
+                </ChildContent>
+            </BlazePanel>
+        </MudItem>
+    </MudGrid>
+</BlazePage>
+
+@inject HttpClient HttpClient
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+
+@code {
+
+    private BreadcrumbItem[] _breadCrumbs =
+    [
+        new BreadcrumbItem("Dashboard", "/"),
+        new BreadcrumbItem("Products", "/products")
+    ];
+
+    private string _searchString;
+    private IEnumerable<Product>? _products;
+    private Func<Product, bool> _quickFilter => x =>
+    {
+        if (string.IsNullOrWhiteSpace(_searchString))
+            return true;
+
+        if (x.Name.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if ($"{x.Type} {x.Description} {x.Category}".Contains(_searchString))
+            return true;
+
+        return false;
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetProducts();
+    }
+
+    async Task GetProducts()
+    {
+        _products = await HttpClient.GetFromJsonAsync<IEnumerable<Product>>("api/products/all");
+        StateHasChanged();
+    }
+
+    async Task DeleteProduct(Product product)
+    {
+        var result = await DialogService.ShowMessageBox("Products",
+            $"Delete product {product.Name}? This cannot be undone.",
+            "Yes",
+            "No");
+        if (result is null) return;
+        if (!result.Value) return;
+        
+        await HttpClient.DeleteAsync($"api/Products/delete-product/{product.Id}");
+        await GetProducts();
+
+        if (!_products.Any(entry => entry.Id == product.Id))
+        {
+            Snackbar.Add($"{product.Name} successfully removed", Severity.Success);
+        }
+    }
+
+}

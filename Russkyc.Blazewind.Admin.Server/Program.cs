@@ -20,7 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using MudBlazor.Services;
+using BlazorComponentBus;
+using Russkyc.Blazewind.Admin.Server.Data.Repos;
 
 namespace Russkyc.Blazewind.Admin.Server;
 
@@ -29,10 +30,11 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        
-        builder.Services.AddMudServices();
+
         builder.Services.AddRazorPages();
-        builder.Services.AddControllersWithViews();
+        builder.Services.AddControllers();
+        builder.Services.AddScoped<ComponentBus>();
+        builder.Services.AddSingleton<ProductRepo>();
 
         var app = builder.Build();
 

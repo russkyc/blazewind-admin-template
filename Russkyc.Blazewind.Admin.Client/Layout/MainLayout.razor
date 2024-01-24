@@ -44,14 +44,14 @@
                      TransformOrigin="Origin.TopRight">
                 <ActivatorContent>
                     <MudChip Size="Size.Large"
-                             Color="Color.Default">
+                             Color="Color.Inherit">
                         <MudStack Spacing="0"
                                   Row="true"
                                   Class="flex flex-row">
                             <MudAvatar>
                                 <MudImage Src="https://i.pravatar.cc/300"></MudImage>
                             </MudAvatar>
-                            <MudText Typo="Typo.caption"
+                            <MudText Typo="Typo.body2"
                                      Class="my-auto">User</MudText>
                         </MudStack>
                     </MudChip>
@@ -92,6 +92,10 @@
         {
             AppbarBackground = "#ffffff",
             Background = "#f8f7fa"
+        },
+        LayoutProperties = new LayoutProperties()
+        {
+            DefaultBorderRadius = ".4rem"
         }
     };
 
