@@ -25,9 +25,11 @@
     </div>
 </MudPaper>
 
+@typeparam T
+
 @code {
 
-    [Parameter] public string Content { get; set; }
+    [Parameter] public T Content { get; set; }
     [Parameter] public string Description { get; set; }
     [Parameter] public string Icon { get; set; }
     [Parameter] public string DisplayColor { get; set; }

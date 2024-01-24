@@ -1,12 +1,38 @@
 ﻿@inherits ComponentBase
 
 <MudPaper Elevation="0"
-          Class="flex flex-col pa-4 rounded-lg h-full">
-    @ChildContent
+          Class="flex flex-col pa-4 rounded-lg">
+    <MudStack>
+        <MudStack Row="true"
+                  Class="flex">
+            <MudStack Spacing="0"
+                      Class="my-auto">
+                @if (Title != null)
+                {
+                    <MudText Class="text-lg font-medium">@Title</MudText>
+                }
+                @if (Description != null)
+                {
+                    <MudText Class="text-sm font-medium opacity-50">@Description</MudText>
+                }
+            </MudStack>
+            <MudSpacer/>
+            <MudStack Spacing="@PanelActionsSpacing"
+                      Row="true"
+                      Class="my-auto">
+                @PanelActionsTemplate
+            </MudStack>
+        </MudStack>
+        @ChildContent
+    </MudStack>
 </MudPaper>
 
 @code {
 
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Description { get; set; }
+    [Parameter] public int PanelActionsSpacing { get; set; }
+    [Parameter] public RenderFragment PanelActionsTemplate { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
 
 }

@@ -4,14 +4,18 @@
 
 <MudStack Class="flex my-8"
           Spacing="6">
-    <MudStack Spacing="0">
+    <MudStack Spacing="0"
+              Row="true"
+              Class="flex">
         <MudText Class="text-2xl font-medium">@Title</MudText>
+        <MudSpacer/>
         @if (ShowBreadCrumbs)
         {
             if (Breadcrumbs != null)
             {
-                <MudBreadcrumbs Items="@Breadcrumbs.ToList()"
-                                Class="font-normal p-0 pt-1 opacity-50"/>
+                <MudBreadcrumbs MaxItems="7"
+                                Items="@Breadcrumbs.ToList()"
+                                Class="my-auto font-normal p-0 pb-3 opacity-50"/>
             }
         }
     </MudStack>
