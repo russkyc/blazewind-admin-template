@@ -4,7 +4,7 @@
 <BlazePage Title="Products" Breadcrumbs="@_breadCrumbs">
     <MudGrid>
         <MudItem sm="12">
-            <BlazePanel Title="Products"
+            <BlazePanel Title="@($"Products ({_products?.Count() ?? 0})")"
                         PanelActionsSpacing="4">
                 <PanelActionsTemplate>
                     <MudInput T="string"
