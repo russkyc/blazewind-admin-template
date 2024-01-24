@@ -54,4 +54,16 @@ public class ProductsController : Controller
     {
         return _productRepo.Delete(id);
     }
+
+    [HttpPut("create")]
+    public void Create([FromBody] Product product)
+    {
+        _productRepo.Create(product);
+    }
+
+    [HttpGet("categories")]
+    public IEnumerable<string> GetProductCategories()
+    {
+        return _productRepo.GetAll().Select(product => product.Category).Distinct(StringComparer.InvariantCultureIgnoreCase);
+    }
 }

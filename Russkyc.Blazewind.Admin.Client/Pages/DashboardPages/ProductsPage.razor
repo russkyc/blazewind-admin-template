@@ -1,5 +1,7 @@
 ﻿@page "/products"
 @using Russkyc.Blazewind.Admin.Shared.Models
+@using Russkyc.Blazewind.Admin.Client.Components.Dialogs
+@using Russkyc.Blazewind.Admin.Shared.Messages
 
 <BlazePage Title="Products" Breadcrumbs="@_breadCrumbs">
     <MudGrid>
@@ -18,7 +20,8 @@
                     <MudButton Color="Color.Primary"
                                DisableElevation="true"
                                StartIcon="@Icons.Material.Rounded.Add"
-                               Variant="Variant.Filled">
+                               Variant="Variant.Filled"
+                               OnClick="@AddProduct">
                         <MudText>
                             Add Product
                         </MudText>
@@ -44,6 +47,8 @@
                                      SortMode="@SortMode.None"
                                      Groupable="false">
                             <Columns>
+                                <PropertyColumn Property="x => x.Id"
+                                                Filterable="true"/>
                                 <PropertyColumn Property="x => x.Image">
                                     <HeaderTemplate>
                                         <MudStack Class="mx-auto">
@@ -113,6 +118,7 @@
 @inject HttpClient HttpClient
 @inject IDialogService DialogService
 @inject ISnackbar Snackbar
+@inject ComponentBus Bus
 
 @code {
 
@@ -140,6 +146,13 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Bus.Subscribe<DataUpdatedMessage>(OnDataUpdated);
+        await GetProducts();
+    }
+
+    private async Task OnDataUpdated(MessageArgs message, CancellationToken ct)
+    {
+        if (message.GetMessage<DataUpdatedMessage>().Type != typeof(Product)) return;
         await GetProducts();
     }
 
@@ -147,6 +160,11 @@
     {
         _products = await HttpClient.GetFromJsonAsync<IEnumerable<Product>>("api/products/all");
         StateHasChanged();
+    }
+
+    async Task AddProduct()
+    {
+        var result = await DialogService.ShowAsync<AddProductDialog>();
     }
 
     async Task DeleteProduct(Product product)
@@ -159,7 +177,7 @@
         if (!result.Value) return;
         
         await HttpClient.DeleteAsync($"api/Products/delete-product/{product.Id}");
-        await GetProducts();
+        await Bus.Publish(new DataUpdatedMessage(typeof(Product)));
 
         if (!_products.Any(entry => entry.Id == product.Id))
         {

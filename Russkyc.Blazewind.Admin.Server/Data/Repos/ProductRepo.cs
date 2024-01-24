@@ -41,7 +41,23 @@ public class ProductRepo
             .RuleFor(product => product.Stock, faker => faker.Random.Int(1, 50))
             .RuleFor(product => product.Created, faker => faker.Date.Between(DateTime.Now.AddYears(-2),DateTime.Now))
             .RuleFor(product => product.Updated, faker => faker.Date.Between(DateTime.Now.AddYears(-2),DateTime.Now))
-            .Generate(250);
+            .Generate(520);
+    }
+
+    public void Create(Product product)
+    {
+        var id = _products.OrderBy(product => product.Id).Last().Id;
+        id++;
+        product.Id = id;
+        product.Image = new Faker().Image.LoremFlickrUrl(80, 80);
+        _products.Add(product);
+    }
+
+    public void Update(Product product)
+    {
+        var productIndex = _products.IndexOf(
+            _products.First(entry => entry.Id == product.Id));
+        _products[productIndex] = product;
     }
 
     public bool Delete(int id)
@@ -58,6 +74,6 @@ public class ProductRepo
 
     public IEnumerable<Product> GetAll()
     {
-        return _products;
+        return _products.OrderByDescending(product => product.Created);
     }
 }

@@ -11,6 +11,7 @@
     <PackageReference Include="BlazorComponentBus" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.1" PrivateAssets="all" />
+    <PackageReference Include="Morris.Blazor.Validation" Version="3.0.0" />
     <PackageReference Include="MudBlazor" Version="6.14.0" />
   </ItemGroup>
   <ItemGroup>

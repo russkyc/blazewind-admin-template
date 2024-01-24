@@ -1,4 +1,4 @@
-// MIT License
+﻿// MIT License
 // 
 // Copyright (c) 2024 Russell Camo (Russkyc)
 // 
@@ -20,35 +20,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using BlazorComponentBus;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Morris.Blazor.Validation;
-using MudBlazor;
-using MudBlazor.Services;
+namespace Russkyc.Blazewind.Admin.Shared.Messages;
 
-namespace Russkyc.Blazewind.Admin.Client;
-
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.RootComponents.Add<App>("#app");
-        builder.RootComponents.Add<HeadOutlet>("head::after");
-
-        builder.Services.AddScoped<ComponentBus>();
-        builder.Services.AddMudServices(options =>
-        {
-            options.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomRight;
-        });
-
-        builder.Services.AddFormValidation(config =>
-            config.AddDataAnnotationsValidation()
-        );
-
-        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-        await builder.Build().RunAsync();
-    }
-}
+public record DataUpdatedMessage(Type Type);

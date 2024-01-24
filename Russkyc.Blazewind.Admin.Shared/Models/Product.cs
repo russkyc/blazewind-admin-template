@@ -20,16 +20,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Russkyc.Blazewind.Admin.Shared.Models;
 
 public class Product
 {
     public int Id { get; set; }
-    public string Image { get; set; }
+    public string? Image { get; set; }
+    [Required]
     public string Name { get; set; }
+    [Required]
     public string Type { get; set; }
+    [Required]
     public string Description { get; set; }
+    [Required]
     public string Category { get; set; }
+    [Range(1,1000)]
     public int Stock { get; set; }
     public DateTime Created { get; set; } = DateTime.Now;
     public DateTime Updated { get; set; } = DateTime.Now;
