@@ -74,6 +74,6 @@ public class ProductRepo
 
     public IEnumerable<Product> GetAll()
     {
-        return _products.OrderByDescending(product => product.Created);
+        return _products.OrderByDescending(product => product.Id);
     }
 }

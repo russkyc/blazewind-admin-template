@@ -44,40 +44,40 @@
                                      Items="@_products"
                                      Filterable="false"
                                      QuickFilter="@_quickFilter"
-                                     SortMode="@SortMode.None"
+                                     SortMode="@SortMode.Multiple"
                                      Groupable="false">
                             <Columns>
-                                <PropertyColumn Property="x => x.Id"
-                                                Filterable="true"/>
-                                <PropertyColumn Property="x => x.Image">
+                                <PropertyColumn Property="x => x.Id">
+                                    <HeaderTemplate>
+                                        <MudStack Class="mx-auto">
+                                            Id
+                                        </MudStack>
+                                    </HeaderTemplate>
+                                </PropertyColumn>
+                                <PropertyColumn Property="x => x.Image" Sortable="false">
                                     <HeaderTemplate>
                                         <MudStack Class="mx-auto">
                                             Image
                                         </MudStack>
                                     </HeaderTemplate>
                                     <CellTemplate>
-                                        <MudStack Class="flex">
-                                            <MudImage Class="m-auto w-14 h-14 rounded-lg" Src="@context.Item.Image"/>
+                                        <MudStack Class="flex mx-auto">
+                                            <MudImage Class="m-auto min-w-14 w-14 h-14 rounded-lg" Src="@context.Item.Image"/>
                                         </MudStack>
                                     </CellTemplate>
                                 </PropertyColumn>
-                                <PropertyColumn Property="x => x.Name"
-                                                Filterable="true"/>
-                                <PropertyColumn Property="x => x.Type"
-                                                Filterable="true"/>
+                                <PropertyColumn Property="x => x.Name"/>
+                                <PropertyColumn Property="x => x.Type"/>
                                 <PropertyColumn Property="x => x.Description"
-                                                Filterable="true"
                                                 HeaderClass="flex"
-                                                CellClass="max-w-40 overflow-hidden">
+                                                CellClass="max-w-60 overflow-hidden">
                                     <CellTemplate>
                                         <p class="truncate">@context.Item.Description</p>
                                     </CellTemplate>
                                 </PropertyColumn>
-                                <PropertyColumn Property="x => x.Category"
-                                                Filterable="true"/>
-                                <PropertyColumn Property="x => x.Stock"
-                                                Filterable="true"/>
-                                <TemplateColumn Title="Actions">
+                                <PropertyColumn Property="x => x.Category"/>
+                                <PropertyColumn Property="x => x.Stock"/>
+                                <TemplateColumn Title="Actions" Sortable="false">
                                     <HeaderTemplate>
                                         <MudStack Class="mx-auto">
                                             Actions
@@ -130,6 +130,7 @@
 
     private string _searchString;
     private IEnumerable<Product>? _products;
+
     private Func<Product, bool> _quickFilter => x =>
     {
         if (string.IsNullOrWhiteSpace(_searchString))
@@ -175,7 +176,7 @@
             "No");
         if (result is null) return;
         if (!result.Value) return;
-        
+
         await HttpClient.DeleteAsync($"api/Products/delete-product/{product.Id}");
         await Bus.Publish(new DataUpdatedMessage(typeof(Product)));
 
