@@ -91,6 +91,7 @@
                                                                Color="@Color.Inherit"
                                                                DisableElevation="true"
                                                                Icon="@Icons.Material.Outlined.Edit"
+                                                               OnClick="@(() => EditProduct(context.Item))"
                                                                Class="my-auto"/>
                                                 <MudIconButton Size="@Size.Small"
                                                                Variant="@Variant.Filled"
@@ -166,6 +167,15 @@
     async Task AddProduct()
     {
         var result = await DialogService.ShowAsync<AddProductDialog>();
+    }
+
+    async Task EditProduct(Product product)
+    {
+        var parameters = new DialogParameters<EditProductDialog>()
+        {
+            { t => t.Product, product }
+        };
+        var result = await DialogService.ShowAsync<EditProductDialog>("Edit", parameters);
     }
 
     async Task DeleteProduct(Product product)

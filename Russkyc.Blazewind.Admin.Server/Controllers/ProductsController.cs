@@ -60,10 +60,18 @@ public class ProductsController : Controller
     {
         _productRepo.Create(product);
     }
+    
+    [HttpPut("update")]
+    public void Update([FromBody] Product product)
+    {
+        _productRepo.Update(product);
+    }
 
     [HttpGet("categories")]
     public IEnumerable<string> GetProductCategories()
     {
-        return _productRepo.GetAll().Select(product => product.Category).Distinct(StringComparer.InvariantCultureIgnoreCase);
+        return _productRepo.GetAll()
+            .Select(product => product.Category)
+            .Distinct(StringComparer.InvariantCultureIgnoreCase);
     }
 }

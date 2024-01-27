@@ -1,0 +1,143 @@
+﻿@using Russkyc.Blazewind.Admin.Shared.Models
+@using Russkyc.Blazewind.Admin.Shared.Messages
+
+@inject ISnackbar Snackbar
+
+<MudDialog Class="w-[50rem] min-w-[25rem] mx-[max(20vw,2)]">
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            Edit Product
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <EditForm Model="Product"
+                  OnValidSubmit="@OnValidSubmit">
+            <DataAnnotationsValidator/>
+            <MudStack Spacing="0" Class="flex flex-col mb-4">
+                <MudTextField Margin="Margin.Dense"
+                              Variant="Variant.Outlined"
+                              Placeholder="Name"
+                              HelperText="Item Name"
+                              HelperTextOnFocus="true"
+                              @bind-Value="@Product.Name"
+                              For="@(() => Product.Name)"
+                              OnlyValidateIfDirty="true"
+                              AutoFocus="true"
+                              Class="m-0 p-0"/>
+                <MudTextField Margin="Margin.Dense"
+                              Variant="Variant.Outlined"
+                              Placeholder="Type"
+                              HelperText="Item Type"
+                              HelperTextOnFocus="true"
+                              @bind-Value="@Product.Type"
+                              For="@(() => Product.Type)"
+                              OnlyValidateIfDirty="true"
+                              Class="m-0 p-0"/>
+                <MudTextField Margin="Margin.Dense"
+                              Lines="3"
+                              MaxLines="3"
+                              Variant="Variant.Outlined"
+                              Placeholder="Description"
+                              HelperText="Item Description"
+                              HelperTextOnFocus="true"
+                              @bind-Value="@Product.Description"
+                              For="@(() => Product.Description)"
+                              OnlyValidateIfDirty="true"
+                              Class="m-0 p-0"/>
+                <MudAutocomplete Margin="Margin.Dense"
+                              Variant="Variant.Outlined"
+                              Placeholder="Category"
+                              HelperText="Item Category"
+                              HelperTextOnFocus="true"
+                              @bind-Value="@Product.Category"
+                              For="@(() => Product.Category)"
+                              OnlyValidateIfDirty="true"
+                              CoerceValue="true"
+                              ResetValueOnEmptyText="true"
+                              MaxHeight="200"
+                              SearchFunc="@Search"
+                              Class="m-0 p-0"/>
+                <MudNumericField Margin="Margin.Dense"
+                              Variant="Variant.Outlined"
+                              Placeholder="Stock"
+                              HelperText="Stock Count"
+                              HelperTextOnFocus="true"
+                              @bind-Value="@Product.Stock"
+                              For="@(() => Product.Stock)"
+                              OnlyValidateIfDirty="true"
+                              Min="0"
+                              Max="1000"
+                              Class="m-0 p-0"/>
+                <MudStack Class="mt-4" Row="true">
+                    <MudSpacer/>
+                    <MudButton ButtonType="ButtonType.Submit"
+                               Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               DisableElevation="true"
+                               StartIcon="@Icons.Material.Rounded.Save">
+                        <MudText>
+                            Save
+                        </MudText>
+                    </MudButton>
+                </MudStack>
+            </MudStack>
+        </EditForm>
+    </DialogContent>
+</MudDialog>
+
+@inject HttpClient HttpClient
+@inject ComponentBus Bus
+
+@code {
+
+    private string[] _categories = [];
+    [Parameter] public Product Product { get; set; } = new Product();
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Bus.Subscribe<DataUpdatedMessage>(OnDataUpdated);
+        await GetCategories();
+    }
+
+    private async Task OnDataUpdated(MessageArgs message, CancellationToken ct)
+    {
+        if (message.GetMessage<DataUpdatedMessage>().Type != typeof(Product)) return;
+        await GetCategories();
+    }
+
+    async Task GetCategories()
+    {
+        var categories = await HttpClient.GetFromJsonAsync<IEnumerable<string>>("api/Products/categories");
+        _categories = categories.ToArray();
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task<IEnumerable<string>> Search(string value)
+    {
+        if (string.IsNullOrEmpty(value)) return _categories;
+        return _categories.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
+    }
+
+    private async Task SaveProduct()
+    {
+        var result = await HttpClient.PutAsJsonAsync("api/Products/update",Product);
+
+        if (!result.IsSuccessStatusCode)
+        {
+            Snackbar.Add($"Failed to save changes to {Product.Name}", Severity.Error);
+            MudDialog.Close(DialogResult.Cancel());
+            return;
+        }
+        
+        Snackbar.Add($"Saved changes to {Product.Name}", Severity.Success);
+        MudDialog.Close(DialogResult.Ok(Product.Id));
+        await Bus.Publish(new DataUpdatedMessage(typeof(Product)));
+    }
+
+    private async Task OnValidSubmit(EditContext editContext)
+    {
+        await SaveProduct();
+    }
+
+}
