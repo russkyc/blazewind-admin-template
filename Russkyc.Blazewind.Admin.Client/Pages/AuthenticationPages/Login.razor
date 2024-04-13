@@ -1,7 +1,51 @@
 ﻿@page "/login"
 
-<h3>Login</h3>
+<div class="flex w-screen h-screen">
+    <MudPaper Elevation="0" class="w-96 m-auto p-8 rounded-xl">
+        <MudStack Spacing="4">
+            <MudText Class="mb-4 mx-auto text-2xl font-medium">Login</MudText>
+            <MudStack Spacing="2">
+                <MudText Class="my-auto text-sm font-medium">Username</MudText>
+                <MudInput T="string"
+                          Immediate="true"
+                          Variant="Variant.Outlined"
+                          Placeholder="Username"
+                          Margin="Margin.Dense"
+                          AdornmentIcon="@Icons.Material.Rounded.Search"/>
+            </MudStack>
+
+            <MudStack Spacing="2">
+                <MudText Class="my-auto text-sm font-medium">Password</MudText>
+                <MudInput T="string"
+                          Immediate="true"
+                          Variant="Variant.Outlined"
+                          Placeholder="Password"
+                          Margin="Margin.Dense"
+                          AdornmentIcon="@Icons.Material.Rounded.Search"/>
+                <MudLink Href="/login" Class="ml-auto text-sm">Forgot Password</MudLink>
+            </MudStack>
+            <MudStack Spacing="3">
+                <MudButton Color="Color.Primary"
+                           Class="mt-4"
+                           DisableElevation="true"
+                           Variant="Variant.Filled">
+                    <MudText>
+                        Login
+                    </MudText>
+                </MudButton>
+                <MudButton Color="Color.Primary"
+                           DisableElevation="true"
+                           Href="/register"
+                           Variant="Variant.Text">
+                    <MudText>
+                        Register
+                    </MudText>
+                </MudButton>
+            </MudStack>
+        </MudStack>
+    </MudPaper>
+</div>
 
 @code {
-    
+
 }

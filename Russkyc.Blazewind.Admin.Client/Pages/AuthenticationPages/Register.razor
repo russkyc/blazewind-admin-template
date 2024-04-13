@@ -1,7 +1,63 @@
 ﻿@page "/register"
 
-<h3>Register</h3>
-
-@code {
-    
-}
+<div class="flex w-screen h-screen">
+    <MudPaper Elevation="0" class="w-96 m-auto p-8 rounded-xl">
+        <MudStack Spacing="4">
+            <MudText Class="mb-4 mx-auto text-2xl font-medium">Register</MudText>
+            <MudStack Spacing="2">
+                <MudText Class="my-auto text-sm font-medium">Username</MudText>
+                <MudInput T="string"
+                          Immediate="true"
+                          Variant="Variant.Outlined"
+                          Placeholder="Username"
+                          Margin="Margin.Dense"
+                          AdornmentIcon="@Icons.Material.Rounded.Search"/>
+            </MudStack>
+            <MudStack Spacing="2">
+                <MudText Class="my-auto text-sm font-medium">Email</MudText>
+                <MudInput T="string"
+                          Immediate="true"
+                          Variant="Variant.Outlined"
+                          Placeholder="Email"
+                          Margin="Margin.Dense"
+                          AdornmentIcon="@Icons.Material.Rounded.Search"/>
+            </MudStack>
+            <MudStack Spacing="2">
+                <MudText Class="my-auto text-sm font-medium">Password</MudText>
+                <MudInput T="string"
+                          Immediate="true"
+                          Variant="Variant.Outlined"
+                          Placeholder="Password"
+                          Margin="Margin.Dense"
+                          AdornmentIcon="@Icons.Material.Rounded.Search"/>
+            </MudStack>
+            <MudStack Spacing="2">
+                <MudText Class="my-auto text-sm font-medium">Repeat Password</MudText>
+                <MudInput T="string"
+                          Immediate="true"
+                          Variant="Variant.Outlined"
+                          Placeholder="Repeat Password"
+                          Margin="Margin.Dense"
+                          AdornmentIcon="@Icons.Material.Rounded.Search"/>
+            </MudStack>
+            <MudStack Spacing="3">
+                <MudButton Color="Color.Primary"
+                           Class="mt-4"
+                           DisableElevation="true"
+                           Variant="Variant.Filled">
+                    <MudText>
+                        Register
+                    </MudText>
+                </MudButton>
+                <MudButton Color="Color.Primary"
+                           DisableElevation="true"
+                           Href="/login"
+                           Variant="Variant.Text">
+                    <MudText>
+                        I Already Have an Account
+                    </MudText>
+                </MudButton>
+            </MudStack>
+        </MudStack>
+    </MudPaper>
+</div>

@@ -1,85 +1,99 @@
 ﻿@using Russkyc.Blazewind.Admin.Client.Components.Shared
 @inherits LayoutComponentBase
 
+@inject NavigationManager NavigationManager
+
 <MudThemeProvider @ref="@_mudThemeProvider"
                   Theme="@_baseTheme"
                   @bind-IsDarkMode="@_isDarkMode"/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 
-<MudLayout Class="@(_isDarkMode ? "dark" : null)">
-    <MudAppBar Elevation="0"
-               Fixed="true"
-               Class="bg-[--mud-palette-appbar-background] bg-[--mud-palette-appbar-background90] backdrop-blur-sm">
-        <MudStack Row="true"
-                  Spacing="2">
-            <MudIconButton Class="rounded-lg"
-                           Icon="@Icons.Material.Filled.Menu"
-                           Edge="Edge.Start"
-                           OnClick="@((e) => DrawerToggle())"/>
-            <MudText Color="Color.Default"
-                     Typo="Typo.h6"
-                     Class="my-auto text-[#424242] dark:text-white">Blazewind</MudText>
-        </MudStack>
-        <MudSpacer/>
-        <MudStack Row="true"
-                  Spacing="1">
-            <MudToggleIconButton @bind-Toggled="@_isDarkMode"
-                                 Size="Size.Medium"
-                                 Color="Color.Default"
-                                 Icon="@Icons.Material.Rounded.LightMode"
-                                 ToggledIcon="@Icons.Material.Rounded.DarkMode"
-                                 Class="p-2 my-auto"/>
-            <MudBadge Content="3"
-                      Color="Color.Error"
-                      Overlap="true"
-                      Class="my-auto">
-                <MudIconButton
-                    Size="Size.Medium"
-                    Class="p-2"
-                    Color="Color.Default"
-                    Icon="@Icons.Material.Rounded.Notifications"/>
-            </MudBadge>
-            <MudMenu AnchorOrigin="Origin.BottomRight"
-                     TransformOrigin="Origin.TopRight">
-                <ActivatorContent>
-                    <MudChip Size="Size.Large"
-                             Color="Color.Inherit">
-                        <MudStack Spacing="0"
-                                  Row="true"
-                                  Class="flex flex-row">
-                            <MudAvatar>
-                                <MudImage Src="https://i.pravatar.cc/300"></MudImage>
-                            </MudAvatar>
-                            <MudText Typo="Typo.body2"
-                                     Class="my-auto">User</MudText>
-                        </MudStack>
-                    </MudChip>
-                </ActivatorContent>
-                <ChildContent>
-                    <MudMenuItem>Profile</MudMenuItem>
-                    <MudMenuItem>Theme</MudMenuItem>
-                    <MudMenuItem>Usage</MudMenuItem>
-                    <MudMenuItem>Sign Out</MudMenuItem>
-                </ChildContent>
-            </MudMenu>
-        </MudStack>
-    </MudAppBar>
-    <MudDrawer Fixed="true"
-               Elevation="0"
-               DisableOverlay="true"
-               ClipMode="DrawerClipMode.Always"
-               MiniWidth="72px"
-               Variant="DrawerVariant.Mini"
-               @bind-Open="@_drawerOpen">
-        <NavMenu/>
-    </MudDrawer>
-    <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
-            @Body
-        </MudContainer>
-    </MudMainContent>
-</MudLayout>
+@if (NavigationManager.Uri.EndsWith("login", StringComparison.InvariantCultureIgnoreCase)
+     || NavigationManager.Uri.EndsWith("register", StringComparison.InvariantCultureIgnoreCase))
+{
+    @Body
+}
+else
+{
+    <MudLayout Class="@(_isDarkMode ? "dark" : null)">
+        <MudAppBar Elevation="0"
+                   Fixed="true"
+                   Class="bg-[--mud-palette-appbar-background] bg-[--mud-palette-appbar-background90] backdrop-blur-sm">
+            <MudStack Row="true"
+                      Spacing="2">
+                <MudIconButton Class="rounded-lg"
+                               Icon="@Icons.Material.Filled.Menu"
+                               Edge="Edge.Start"
+                               OnClick="@((e) => DrawerToggle())"/>
+                <MudText Color="Color.Default"
+                         Typo="Typo.h6"
+                         Class="my-auto text-[#424242] dark:text-white">
+                    Blazewind
+                </MudText>
+            </MudStack>
+            <MudSpacer/>
+            <MudStack Row="true"
+                      Spacing="1">
+                <MudToggleIconButton @bind-Toggled="@_isDarkMode"
+                                     Size="Size.Medium"
+                                     Color="Color.Default"
+                                     Icon="@Icons.Material.Rounded.LightMode"
+                                     ToggledIcon="@Icons.Material.Rounded.DarkMode"
+                                     Class="p-2 my-auto"/>
+                <MudBadge Content="3"
+                          Color="Color.Error"
+                          Overlap="true"
+                          Class="my-auto">
+                    <MudIconButton
+                        Size="Size.Medium"
+                        Class="p-2"
+                        Color="Color.Default"
+                        Icon="@Icons.Material.Rounded.Notifications"/>
+                </MudBadge>
+                <MudMenu AnchorOrigin="Origin.BottomRight"
+                         TransformOrigin="Origin.TopRight">
+                    <ActivatorContent>
+                        <MudChip Size="Size.Large"
+                                 Color="Color.Inherit">
+                            <MudStack Spacing="0"
+                                      Row="true"
+                                      Class="flex flex-row">
+                                <MudAvatar>
+                                    <MudImage Src="https://i.pravatar.cc/300"></MudImage>
+                                </MudAvatar>
+                                <MudText Typo="Typo.body2"
+                                         Class="my-auto">
+                                    User
+                                </MudText>
+                            </MudStack>
+                        </MudChip>
+                    </ActivatorContent>
+                    <ChildContent>
+                        <MudMenuItem>Profile</MudMenuItem>
+                        <MudMenuItem>Theme</MudMenuItem>
+                        <MudMenuItem>Usage</MudMenuItem>
+                        <MudMenuItem>Sign Out</MudMenuItem>
+                    </ChildContent>
+                </MudMenu>
+            </MudStack>
+        </MudAppBar>
+        <MudDrawer Fixed="true"
+                   Elevation="0"
+                   DisableOverlay="true"
+                   ClipMode="DrawerClipMode.Always"
+                   MiniWidth="72px"
+                   Variant="DrawerVariant.Mini"
+                   @bind-Open="@_drawerOpen">
+            <NavMenu/>
+        </MudDrawer>
+        <MudMainContent>
+            <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+                @Body
+            </MudContainer>
+        </MudMainContent>
+    </MudLayout>
+}
 
 @code {
     bool _drawerOpen = true;
