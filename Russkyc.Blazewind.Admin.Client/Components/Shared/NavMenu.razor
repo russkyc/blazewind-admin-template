@@ -2,54 +2,40 @@
             Color="Color.Primary"
             Class="m-2">
     <MudStack Spacing="2">
-        <MudNavLink Href="/"
-                    IconColor="Color.Inherit"
-                    Icon="@Icons.Material.Rounded.Dashboard"
-                    Match="NavLinkMatch.All">
-            Dashboard
-        </MudNavLink>
-        <MudNavLink Href="/products"
-                    IconColor="Color.Inherit"
-                    Icon="@Icons.Material.Rounded.Widgets"
-                    Match="NavLinkMatch.All">
-            Products
-        </MudNavLink>
-        <MudNavLink Href="/billing"
-                    IconColor="Color.Inherit"
-                    Icon="@Icons.Material.Rounded.CreditCard"
-                    Match="NavLinkMatch.All">
-            Billing
-        </MudNavLink>
-        <MudNavLink Href="/invoice"
-                    IconColor="Color.Inherit"
-                    Icon="@Icons.Material.Rounded.Notes"
-                    Match="NavLinkMatch.All">
-            Invoice
-        </MudNavLink>
-        <MudNavGroup Icon="@Icons.Material.Rounded.VerifiedUser"
-                     Title="Authentication"
-                     HideExpandIcon="true">
-            <MudStack Spacing="2"
-                      Class="my-2">
-                <MudNavLink Href="/login"
-                            IconColor="Color.Inherit"
-                            Icon="@Icons.Material.Rounded.Person"
-                            Match="NavLinkMatch.All">
-                    Login
-                </MudNavLink>
-                <MudNavLink Href="/register"
-                            IconColor="Color.Inherit"
-                            Icon="@Icons.Material.Rounded.HowToReg"
-                            Match="NavLinkMatch.All">
-                    Register
-                </MudNavLink>
-            </MudStack>
-        </MudNavGroup>
-        <MudNavLink Href="/profile"
-                    IconColor="Color.Inherit"
-                    Icon="@Icons.Material.Rounded.Person"
-                    Match="NavLinkMatch.All">
-            Profile
-        </MudNavLink>
+        <BlazeNavLink Content="Dashboard"
+                      Href="/"
+                      Icon="@Icons.Material.Rounded.Dashboard"
+                      IconColor="Color.Inherit"
+                      Match="NavLinkMatch.All"/>
+        <BlazeNavLink Content="Products"
+                      Href="/products"
+                      Icon="@Icons.Material.Rounded.Widgets"
+                      IconColor="Color.Inherit"
+                      Match="NavLinkMatch.All"/>
+        <BlazeNavLink Content="Billing"
+                      Href="/billing"
+                      Icon="@Icons.Material.Rounded.CreditCard"
+                      IconColor="Color.Inherit"
+                      Match="NavLinkMatch.All"/>
+        <BlazeNavLink Content="Invoice"
+                      Href="/invoice"
+                      Icon="@Icons.Material.Rounded.Notes"
+                      IconColor="Color.Inherit"
+                      Match="NavLinkMatch.All"/>
+        <BlazeNavLink Content="Login"
+                      Href="/login"
+                      Icon="@Icons.Material.Rounded.Person"
+                      IconColor="Color.Inherit"
+                      Match="NavLinkMatch.All"/>
+        <BlazeNavLink Content="Register"
+                      Href="/register"
+                      Icon="@Icons.Material.Rounded.HowToReg"
+                      IconColor="Color.Inherit"
+                      Match="NavLinkMatch.All"/>
+        <BlazeNavLink Content="Settings"
+                      Href="/settings"
+                      Icon="@Icons.Material.Rounded.Settings"
+                      IconColor="Color.Inherit"
+                      Match="NavLinkMatch.All"/>
     </MudStack>
 </MudNavMenu>

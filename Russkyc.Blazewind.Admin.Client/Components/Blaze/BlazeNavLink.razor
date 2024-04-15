@@ -1,0 +1,20 @@
+﻿@using System.ComponentModel.DataAnnotations
+<NavLink Href="@Href"
+         class="mx-1 flex rounded-md overflow-clip"
+         ActiveClass="bg-[--mud-palette-primary] text-white"
+         Match="@Match">
+    @if (!string.IsNullOrWhiteSpace(Icon))
+    {
+        <MudIcon Color="Color.Inherit" Class="mx-3 my-2.5 w-6 h-6" Icon="@Icon"></MudIcon>
+    }
+    <p class="mud-nav-link-text my-auto">@Content</p>
+</NavLink>
+
+@code
+{
+    [Parameter, Required] public string Href { get; set; }
+    [Parameter, Required] public string Content { get; set; }
+    [Parameter, Required] public string Icon { get; set; }
+    [Parameter] public Color IconColor { get; set; } = Color.Inherit;
+    [Parameter] public NavLinkMatch Match { get; set; }
+}
