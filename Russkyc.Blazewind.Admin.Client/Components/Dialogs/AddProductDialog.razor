@@ -73,7 +73,7 @@
                     <MudButton ButtonType="ButtonType.Submit"
                                Variant="Variant.Filled"
                                Color="Color.Primary"
-                               DisableElevation="true"
+                               DropShadow="false"
                                StartIcon="@Icons.Material.Rounded.Save">
                         <MudText>
                             Save
@@ -113,7 +113,7 @@
         await InvokeAsync(StateHasChanged);
     }
 
-    private async Task<IEnumerable<string>> Search(string value)
+    private async Task<IEnumerable<string>> Search(string value, CancellationToken token)
     {
         if (string.IsNullOrEmpty(value)) return _categories;
         return _categories.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
