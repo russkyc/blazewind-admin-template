@@ -5,7 +5,8 @@
 
 <MudThemeProvider @ref="@_mudThemeProvider"
                   Theme="@_baseTheme"
-                  @bind-IsDarkMode="@_isDarkMode"/>
+                  @bind-IsDarkMode="@_isDarkMode" />
+<MudPopoverProvider />
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 
@@ -54,7 +55,7 @@ else
                 <MudMenu AnchorOrigin="Origin.BottomRight"
                          TransformOrigin="Origin.TopRight">
                     <ActivatorContent>
-                        <MudChip Size="Size.Large"
+                        <MudChip T="string" Size="Size.Large"
                                  Color="Color.Inherit">
                             <MudStack Spacing="0"
                                       Row="true"
@@ -80,7 +81,7 @@ else
         </MudAppBar>
         <MudDrawer Fixed="true"
                    Elevation="0"
-                   DisableOverlay="true"
+                   Overlay="false"
                    ClipMode="DrawerClipMode.Always"
                    MiniWidth="72px"
                    Variant="DrawerVariant.Mini"
@@ -102,7 +103,7 @@ else
 
     private MudTheme _baseTheme = new MudTheme()
     {
-        Palette = new Palette()
+        PaletteLight = new PaletteLight()
         {
             AppbarBackground = "#ffffff",
             Background = "#f8f7fa"

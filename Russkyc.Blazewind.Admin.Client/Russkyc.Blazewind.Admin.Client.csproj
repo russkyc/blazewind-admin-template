@@ -7,12 +7,12 @@
     <RootNamespace>Russkyc.Blazewind.Admin.Client</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Blazor-ApexCharts" Version="2.2.1" />
+    <PackageReference Include="Blazor-ApexCharts" Version="3.3.0" />
     <PackageReference Include="BlazorComponentBus" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.6" PrivateAssets="all" />
     <PackageReference Include="Morris.Blazor.Validation" Version="3.0.0" />
-    <PackageReference Include="MudBlazor" Version="6.14.0" />
+    <PackageReference Include="MudBlazor" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Russkyc.Blazewind.Admin.Shared\Russkyc.Blazewind.Admin.Shared.csproj" />
