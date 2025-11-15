@@ -92,7 +92,7 @@
 
     private string[] _categories = [];
     [Parameter] public Product Product { get; set; } = new Product();
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter] IMudDialogInstance MudDialog { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
